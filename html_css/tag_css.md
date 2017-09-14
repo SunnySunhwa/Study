@@ -1,4 +1,8 @@
 
+## [class^="heading"]{}
+  - 속성 선택자, 헤딩이라는 속성을 가진 클래스를 다 선택하는 선택자
+
+
 ### <span tabindex="0">
 - span태그가 의미없는 태그(공실)여도, 키보드 포커스를 받을 수 있도록 tabindx를 씀
 
@@ -21,15 +25,6 @@
 ### border-radius
 - border-radius: 0 0 50px 50px / 0 0 15px 15px;
 - 뒤에 4개는 Y축임, 더욱 완만한 곡선으로
-
-
-### gradient
-- background-image: linear-gradient(to bottom, red 0%, blue 30%, green 100%);
-- 백그라운드 이미지에 할당해주어야하며, 그라디언트 타입을 불러옴
-- 속기법 background: #색상, 그라디언트(방향, 색상 %)로 하게되면 그라디언트를 지원하지 않는 브라우저에선, 색상이 나타나게됨
-- 이미지가 있다면 이미지, 아니면 색상이 나타나기 때문
-- 괄호 안에 방향, 색상 시작점%를 순서대로 나열
-- http://www.colorzilla.com/gradient-editor/
 
 
 ### font
@@ -55,6 +50,10 @@
 - ,를 이용해 다중으로 입힐 수 있음
 - 좌표 좌표 블러링 색상 순
 
+
+### box-shadow
+- 좌표 좌표 블러링 확장정도 색상 순
+
 ## Animation
 1. @keyframes 정의
 -  이름값을 설정하고 {}염
@@ -68,5 +67,37 @@
   4. animation-direction: alternate; (순방향-역방향 순환)
   5. animation-delay: #s; 지연시키기
   6. animation-timing-function: ease-in-out; 시간조절 효과
+  - cubic-bezier사이트로 내가 원하는대로 적용 가능
   7. animation-play-state: paused;
   8. 속기법] animation: text-ani 1s forwards infinite alternate ease-in-out 1s;
+
+
+
+
+## background
+- 속성] color, image, repeat, position, size, attachment
+- position: ## %주면 요소박스의 %와 배경이미지의 %둘다에 적용
+
+### gradient
+- background-image: linear-gradient(to bottom, red 0%, blue 30%, green 100%);
+- 백그라운드 이미지에 할당해주어야하며, 그라디언트 타입을 불러옴
+- 속기법 background: #색상, 그라디언트(방향, 색상 %)로 하게되면 그라디언트를 지원하지 않는 브라우저에선, 색상이 나타나게됨
+- 이미지가 있다면 이미지, 아니면 색상이 나타나기 때문
+- 괄호 안에 방향, 색상 시작점%를 순서대로 나열
+- http://www.colorzilla.com/gradient-editor/
+
+
+### 배경 다중 적용
+- 하나의 객체에 배경을 다중으로 줄 수 있음
+- 색상, 이미지를 함께 쓰는 속기법으로는 다중으로 줄수 없음
+- 다중으로 적용할때는 이미지 속성 먼저 선언한 후, 색상 속성을 나중에 선언 (우선순위 문제)
+- 다중으로 쓸때는 가장 위에 올려놓고 싶은 배경이미지를 가장 먼저 선언
+
+
+## form
+- https://www.miketaylr.com/pres/html5/forms2.html
+1. form - fieldset(그루핑) - legend(타이틀)
+2. 각각 type 설정을 통해 형식을 부여 (text, password, tel, etc)
+3. label의 for에 input의 id값을 부여해서 연결
+4. input에 placeholder속성을 통해 입력란에 미리 글씨 입력가능
+5. required: 해당 input 영역이 필수로 채워져야 함을 나타냄
