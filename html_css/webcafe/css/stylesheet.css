@@ -5,7 +5,8 @@
 
 /* 숨김 컨텐츠 */
 
-.readable-hidden, legend {
+.readable-hidden,
+legend {
   background-color: red;
   /* display: none; 했을때에는 키가 포커싱 못함 -> 기껏 써놓은 의미를 잃음
   다른 방법으로 숨기기 (트릭) */
@@ -42,14 +43,17 @@ a {
   text-decoration: none;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   color: #f00;
 }
 
 
 /* 기본 box-sizing 재설정 */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -58,7 +62,11 @@ a:hover, a:focus {
   background-color: #aaa;
 }
 
-.header, .visual, .main-content, .slogan, .footer {
+.header,
+.visual,
+.main-content,
+.slogan,
+.footer {
   width: 940px;
   margin: 0 auto;
 }
@@ -135,7 +143,8 @@ a:hover, a:focus {
   border-left: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-.main-menu span:hover, .main-menu span:focus {
+.main-menu span:hover,
+.main-menu span:focus {
   color: #ff0;
   outline: 0;
 }
@@ -143,7 +152,8 @@ a:hover, a:focus {
 
 /* 메인메뉴 글씨 하단에만 보더선이 나오게 하도록! 가상요소 추가, 하단으로 내리기위해 블록 */
 
-.main-menu span:hover::after, .main-menu span:focus::after {
+.main-menu span:hover::after,
+.main-menu span:focus::after {
   content: "";
   display: block;
   border-top: 2px solid #000;
@@ -156,7 +166,8 @@ a:hover, a:focus {
   white-space: nowrap;
 }
 
-.sub-menu li, .sub-menu a {
+.sub-menu li,
+.sub-menu a {
   display: inline-block;
   font-size: 1.4rem;
 }
@@ -240,7 +251,8 @@ a:hover, a:focus {
   position: relative;
 }
 
-.visual::before, .visual::after {
+.visual::before,
+.visual::after {
   content: "";
   position: absolute;
   top: 0;
@@ -266,6 +278,9 @@ a:hover, a:focus {
   width: 500px;
   ;
 }
+
+
+/* 메인 컨텐츠 */
 
 .main-content {
   min-height: 400px;
@@ -293,17 +308,14 @@ a:hover, a:focus {
 }
 
 .group1 {
-  background-color: aqua;
   width: 250px;
 }
 
 .group2 {
-  background-color: olive;
   width: 380px;
 }
 
 .group3 {
-  background-color: orange;
   width: 190px;
 }
 
@@ -320,7 +332,7 @@ a:hover, a:focus {
 .login-heading {
   color: #ff0;
   margin: 0 0 10px 10px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-family: "Noto Sans Bold";
 }
 
@@ -339,12 +351,15 @@ a:hover, a:focus {
 
 /* 라벨과 인풋의 높이차가 생겨 보이는 여백을 삭제하기 위해 font-size:0으로 입력 */
 
-.user-email, .user-pw {
+.user-email,
+.user-pw {
   margin-bottom: 4px;
   font-size: 0;
 }
 
-.login-form label, .login-form input, .btn-login {
+.login-form label,
+.login-form input,
+.btn-login {
   font-size: 1.4rem;
 }
 
@@ -414,9 +429,140 @@ a:hover, a:focus {
   top: 2px;
 }
 
+
+/* 유효성 검사 배너 링크 */
+
+.validation {
+  margin-top: 20px;
+}
+
+.validation-list li {
+  margin-bottom: 10px;
+}
+
+.validation-list a {
+  padding: 5px;
+  display: block;
+  padding: 5px 10px 5px 45px;
+  background: url("images/validation_icon.png") no-repeat 20px, linear-gradient(to bottom, #eee, #ccc);
+  border: 1px solid #aaa;
+  border-radius: 20px;
+}
+
+
+/* 웹관련 용어 */
+
+.term {
+  background: linear-gradient(to bottom, #eee, #ccc);
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.term-heading {
+  font-family: "Noto Sans Bold";
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.term-list {
+  margin-bottom: 10px;
+}
+
+.term-list::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.term-list-heading,
+.term-list-brief {
+  float: right;
+  width: 145px;
+  margin-top: 10px;
+}
+
+.term-list-heading {
+  color: #296897;
+  font-weight: bold;
+}
+
+.term-list-thumb {
+  background: pink;
+  float: left;
+  margin-top: 15px;
+}
+
+.term-list-thumb img {
+  display: block;
+}
+
+.term-list dt:nth-child(6n+4),
+.term-list dd:nth-child(6n+6) {
+  float: left;
+}
+
+.term-list dd:nth-child(6n+5) {
+  float: right;
+}
+
+
+/* 검색 폼 */
+
+.search {
+  background: linear-gradient(to bottom, #eee, #fff);
+  border-radius: 10px 10px 0 0;
+  border: 1px solid #aaa;
+  padding: 20px 25px 10px;
+  border-bottom: #fff;
+}
+
+.for-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-form label,
+.search-from input,
+.search-form button {
+  vertical-align: middle;
+}
+
+.search label::before {
+  content: "z";
+  font-family: "WebcafeIcon";
+  position: relative;
+  top: 2px;
+  margin-right: 3px;
+}
+
+.search-form input {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 0 0 0 5px;
+  height: 22px;
+  width: 190px;
+}
+
+.btn-search {
+  padding: 1px 10px;
+  height: 22px;
+  background: linear-gradient(to bottom, #222, #666);
+  border-radius: 3px;
+  border: 1px solid #aaa;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+
+/* 슬로건 */
+
 .slogan {
   background-color: lime;
 }
+
+
+/* 풋터 */
 
 .footer {
   background-color: skyblue;
