@@ -121,7 +121,7 @@ a:focus {
 .main-menu {
   border-top: 2px solid #000;
   border-radius: 0 0 5px 5px;
-  background: #f98f0c linear-gradient(to bottom, #ffc578 0%, #f98f0c 35%, 70%, #ffc578 100%);
+  background: #f98f0c linear-gradient(to bottom, #ffc578 0%, #f98f0c 35%, #f98f0c 70%, #ffc578 100%);
   height: 47px;
   left: 255px;
   /* box-sizing 때문에 border 2px포함한 47px */
@@ -367,6 +367,7 @@ a:focus {
   width: 4em;
   /* vertical-align: middle; */
   display: inline-block;
+  cursor: pointer;
 }
 
 .login-form input {
@@ -552,6 +553,163 @@ a:focus {
   border: 1px solid #aaa;
   color: #fff;
   font-size: 1.2rem;
+}
+
+
+/* 공지사항 및 자료실 */
+
+.board {
+  margin-top: 20px;
+  position: relative;
+}
+
+.board ul,
+.notice-more,
+.pds-more {
+  display: none;
+}
+
+.board-active ul,
+.board-active>a {
+  display: block !important;
+}
+
+.icon-more::before {
+  content: "p";
+  font-family: "WebcafeIcon";
+  color: lime;
+  margin-right: 5px;
+  position: relative;
+  top: 2px;
+}
+
+.notice-more,
+.pds-more {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 8px;
+}
+
+.notice-heading,
+.pds-heading {
+  /* 탭을 플로트로 배치했을 경우 */
+  /* float: left; */
+  position: absolute;
+  top: 0;
+  padding: 5px 15px;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #eee, #ccc);
+  border: 1px solid #aaa;
+  border-radius: 5px 5px 0 0;
+  color: #666;
+}
+
+.notice-heading {
+  left: 0;
+}
+
+.pds-heading {
+  left: 84px;
+}
+
+.notice-list,
+.pds-list {
+  /* 목록을 레이어로 배치했을 경우 */
+  /* position: absolute;
+  top: 45px;
+  width: 100%; */
+  padding-top: 45px;
+  min-height: 180px;
+}
+
+
+/* 액티브 값은, !important 해주는 것이 유지 보수 시 좋음 */
+
+.board-active h2 {
+  background: #fff !important;
+  color: #f00 !important;
+  border: 1px solid #f00 !important;
+  border-bottom: 1px solid #fff !important;
+}
+
+.notice-list a,
+.pds-list a {
+  display: inline-block;
+  width: 285px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.board li {
+  margin: 5px 0;
+}
+
+.board li::before {
+  content: "r";
+  font-family: "WebcafeIcon";
+}
+
+.notice-list time,
+.pds-list time {
+  float: right;
+}
+
+
+/* 뉴스 */
+
+.news {
+  margin-top: 20px;
+  position: relative;
+}
+
+.news-heading {
+  font-size: 1.6rem;
+  color: #f00;
+}
+
+.news-heading::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 80%;
+  background: linear-gradient(to right, #666, #eee);
+  margin-top: 10px;
+}
+
+.news-item {
+  margin-top: 15px;
+  padding-left: 130px;
+  position: relative;
+}
+
+.news-item-heading {
+  font-family: "Noto Sans Bold";
+}
+
+.news-item-heading::before {
+  content: "r";
+  font-family: "WebcafeIcon";
+}
+
+.news-item-thumb {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  text-align: center;
+}
+
+.news-item-thumb img {
+  box-shadow: 0px 3px 6px #777;
+  margin-bottom: 10px;
+}
+
+.news-more {
+  position: absolute;
+  padding: 8px;
+  top: -8px;
+  right: -8px;
 }
 
 

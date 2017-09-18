@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>grid practice/title</title>
+  <style type="text/css">
+    body {
+      margin: 40px;
+    }
+    
+    .sidebar {
+      grid-area: sidebar;
+    }
+    
+    .content {
+      grid-area: content;
+    }
+    
+    .header {
+      grid-area: header;
+    }
+    
+    .wrapper {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 120px 120px 120px;
+      grid-template-areas: ". header  header" "sidebar content content";
+      background-color: #fff;
+      color: #444;
+    }
+    
+    .box {
+      background-color: #444;
+      color: #fff;
+      padding: 20px;
+      font-size: 150%;
+      text-align: center;
+    }
+    
+    .header {
+      background-color: #999;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="box header">Header</div>
+    <div class="box sidebar">Sidebar</div>
+    <div class="box content">Content</div>
+  </div>
+</body>
+
+</html>

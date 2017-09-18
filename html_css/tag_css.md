@@ -106,9 +106,22 @@
 
 **CSS 꿀팁**
 - 데코레이션 하는 대상과, 여백을 지정하는 대상을 구분해놓는 것이 이후에 유지보수하기 좋음
-
+- 동작하는 대상의 클래스(class-active)는 순서상 원상태의 css보다 뒤에 나와야 함
+- 유지 보수 시, css의 순서가 바뀌면 동작하지 않기 때문에 동작 클래스에는 !important를 붙이는게 좋음
 
 ### calc(); 함수
 - width: calc(100% - 120px)
 - 전체에서 120px을 뺀 값을 자동 계산.
 - 연산자 양옆에는 공란(space) 필수!
+
+
+### time
+- 접근성으로 기계가 날짜임을 알수있도록
+- 필수속성 datetime="yy-mm-ddThh:mm:ss"
+
+
+### CSS 글자수 제한
+- 말줄임표 사용 시, text-overflow:ellipsis;
+- text-overflow는 단독사용시 효과X
+- white-space:nowrap;
+- overflow:hidden;을 세트로 써야함.
