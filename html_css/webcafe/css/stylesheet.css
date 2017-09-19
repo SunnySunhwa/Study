@@ -664,45 +664,63 @@ a:focus {
   position: relative;
 }
 
-.news-heading {
-  font-size: 1.6rem;
-  color: #f00;
-}
-
-.news-heading::after {
+.news::before {
   content: "";
-  display: block;
+  position: absolute;
+  top: 35px;
+  left: 0;
   height: 1px;
   width: 80%;
   background: linear-gradient(to right, #666, #eee);
-  margin-top: 10px;
+}
+
+.news-heading {
+  font-size: 1.6rem;
+  font-family: "Noto Sans Bold";
+  color: #f00;
+}
+
+.news a:nth-child(2) {
+  display: block;
+  margin-top: 30px;
 }
 
 .news-item {
   margin-top: 15px;
-  padding-left: 130px;
+  padding-left: 145px;
   position: relative;
 }
 
-.news-item-heading {
-  font-family: "Noto Sans Bold";
-}
-
-.news-item-heading::before {
-  content: "r";
-  font-family: "WebcafeIcon";
+.news-item-brief {
+  line-height: 1.5;
+  text-align: justify;
 }
 
 .news-item-thumb {
   position: absolute;
   left: 0;
-  top: 10px;
+  top: 0;
   text-align: center;
 }
 
 .news-item-thumb img {
-  box-shadow: 0px 3px 6px #777;
+  box-shadow: 0px 3px 5px 0 rgba(0, 0, 0, .5);
   margin-bottom: 10px;
+}
+
+.news-item-heading {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: -1em;
+  position: relative;
+  top: -5px;
+}
+
+.news-item-heading::before {
+  content: "r";
+  font-family: "WebcafeIcon";
+  position: relative;
+  top: 2px;
 }
 
 .news-more {
@@ -710,6 +728,43 @@ a:focus {
   padding: 8px;
   top: -8px;
   right: -8px;
+}
+
+
+/* 신규 이벤트 및 관련 사이트 */
+
+.event-related {
+  background: linear-gradient(to bottom, #eee, #ccc);
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+.event {
+  position: relative;
+}
+
+.event-heading {
+  font-size: 1.6rem;
+  font-family: "Noto Sans Bold";
+  padding: 10px;
+}
+
+.event-heading span {
+  color: #f00;
+}
+
+.btn-event {
+  background: pink;
+  height: 18px;
+}
+
+.btn-event-prev,
+.btn-event-next {
+  width: 19px;
+  height: 100%;
+  padding: 18px 0 0 0;
+  background: url("images/back_forward.png") no-repeat;
+  overflow: hidden;
 }
 
 

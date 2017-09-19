@@ -21,6 +21,7 @@
 
 #### normalize.css
   - css 기본값 세팅 (뷰어값 삭제)
+  - https://cdnjs.com/libraries/normalize
 
 #### reset.css
   - css 기본값  리셋
@@ -34,6 +35,12 @@
 - 뒤로 갈수록 안정적으로 쓸수있음
 
 
+
+### Font Awesome
+- 웹아이콘 클래스 모듈화 사이트
+- http://fontawesome.io/
+
+ 
 ## 단축키 (emmet)
   - Cmd + shift + k : 커서가 있는줄 삭제
   - cmd + shift + D : 커서 있는줄 복사

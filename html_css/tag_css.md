@@ -52,7 +52,7 @@
 
 
 ### box-shadow
-- 좌표 좌표 블러링 확장정도 색상 순
+- x좌표 y좌표 블러 스프레드 색상 순
 
 ## Animation
 1. @keyframes 정의
@@ -108,7 +108,8 @@
 - 데코레이션 하는 대상과, 여백을 지정하는 대상을 구분해놓는 것이 이후에 유지보수하기 좋음
 - 동작하는 대상의 클래스(class-active)는 순서상 원상태의 css보다 뒤에 나와야 함
 - 유지 보수 시, css의 순서가 바뀌면 동작하지 않기 때문에 동작 클래스에는 !important를 붙이는게 좋음
-
+- html5부터는 인라인요소 안에 블럭요소를 둘수있게됨
+- 그러나 css에서 부모 인라인을 블럭화해줘야함
 ### calc(); 함수
 - width: calc(100% - 120px)
 - 전체에서 120px을 뺀 값을 자동 계산.
@@ -125,3 +126,25 @@
 - text-overflow는 단독사용시 효과X
 - white-space:nowrap;
 - overflow:hidden;을 세트로 써야함.
+
+
+## IR (image replacement) 기법
+- 텍스트를 감추고, 이미지(배경)만 보여주는 방식
+
+1. padding속성 추가
+  - css에 해당 마크업에 width, height, padding(top), overflow, box-sizing로 하는 방법
+  - height만큼 패딩 값을 지정하여 안보이게
+  - 이 방법은 마크업 태그가 button일 경우, 브라우저마다 height가 달라보이게 됨
+  - 이때에는 해당태그 부모요소에 height를 지정해주고, 해당태그에 100%로 상속받게하면 해결
+
+
+2. 마크업에 빈요소(span) + position 추가
+  - 해당하는 마크업안에 빈 요소를 두어, 클래스를 지정(ir-box)
+  - 부모에 position relative, ir-box에 absolute로 두어 띄움
+  - width:100%, height: 100%하여 부모와 크기 동일하게
+  - 키 포커스를 받으려면 tabindex="0" 추가
+  - 여러개가 필요한 상태에 배경이미지가 반복으로 사용한다면, 잘라서 사용하도록 -> sprite image형식
+      - **타스크러너..? 걸프, 그런트러너??스프라이트 스미스?? 웹팩??**
+  - 서버에 배경이미지를 요청하고 응답하는 횟수를 줄여 더욱 빠르게 사용가능  
+
+3. 가상요소 추가

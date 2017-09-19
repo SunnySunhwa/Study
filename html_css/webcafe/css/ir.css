@@ -1,0 +1,18 @@
+@charset "utf-8";
+.branding {
+  background: yellow;
+  box-sizing: border-box;
+  padding: 30px;
+  height: 195px;
+  width: 290px;
+  position: relative;
+}
+
+.ir-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: url("images/title.png") no-repeat;
+}
