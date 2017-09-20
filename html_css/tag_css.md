@@ -71,6 +71,19 @@
   7. animation-play-state: paused;
   8. 속기법] animation: text-ani 1s forwards infinite alternate ease-in-out 1s;
 
+## **transition**
+- hover가 아니라 트리거가 될 클래스에 지정. (animation과 다른점!)
+- hover에는 변했을때의 속성 상태값만 선언
+- 변할 속성이 여러개 가능 (,로 다중 지정 가능)
+- 즉, delay 역시 다중지정이 가능하여 순차적 동작도 가능
+- 모든 효과를 한번에 하고싶을때는 속성 값을 property값을 all로 해서 가능
+- 그러나 다중 지정을 각각 따로 효과를 주고 싶을때에는 세트 속기법 사용
+- eg] transition: height 1s 0s, background 1s 1s;
+
+
+1. transition-property:  변할 속성이름 적기 (height, width등)
+2. transition-duration: 변하는 시간
+3. transition-delay:  지연 시간
 
 
 
@@ -110,6 +123,9 @@
 - 유지 보수 시, css의 순서가 바뀌면 동작하지 않기 때문에 동작 클래스에는 !important를 붙이는게 좋음
 - html5부터는 인라인요소 안에 블럭요소를 둘수있게됨
 - 그러나 css에서 부모 인라인을 블럭화해줘야함
+
+
+
 ### calc(); 함수
 - width: calc(100% - 120px)
 - 전체에서 120px을 뺀 값을 자동 계산.
@@ -148,3 +164,16 @@
   - 서버에 배경이미지를 요청하고 응답하는 횟수를 줄여 더욱 빠르게 사용가능  
 
 3. 가상요소 추가
+
+
+
+### ol > li
+- ol 의 li는 list-style: none; 하는 순간, 순서의 의미를 잃어버림
+- 이럴때에는 counter-increment: number; 를  사용해서 보이진 않지만 순서의 의미를 더할수있음
+- counter-increment로 꾸미기가 가능해진 요소는 li:before {content: counter(number, decimal);}을 사용해 숫자가 나타나게 할수있음
+
+
+### blockquote, quote
+- 블럭 / 인라인 인용 태그
+- 속성: cite="인용 사이트"
+- css속성 {quotes: "[[" "]]";}

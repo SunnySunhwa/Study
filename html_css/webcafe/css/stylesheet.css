@@ -733,50 +733,237 @@ a:focus {
 
 /* 신규 이벤트 및 관련 사이트 */
 
-.event-related {
+.gradient-box {
   background: linear-gradient(to bottom, #eee, #ccc);
   border-radius: 5px;
   border: 1px solid #aaa;
+  padding: 10px;
 }
 
 .event {
   position: relative;
+  border-bottom: 1px solid #aaa;
 }
 
-.event-heading {
+.event-heading,
+.related-heading,
+.popular-heading {
   font-size: 1.6rem;
-  font-family: "Noto Sans Bold";
-  padding: 10px;
+  font-family: "Noto Sans Bold", sans-serif;
 }
 
-.event-heading span {
+.event-heading span,
+.related-heading span,
+.popular-heading span {
   color: #f00;
 }
 
+.event-thumb,
+.event-brief {
+  margin: 10px 0;
+}
+
+.event-thumb img {
+  border: 1px solid #aaa;
+  box-shadow: 6px 6px 0 0 #999;
+}
+
 .btn-event {
-  background: pink;
   height: 18px;
+  position: absolute;
+  top: 3px;
+  right: 0;
 }
 
 .btn-event-prev,
 .btn-event-next {
+  padding: 18px 0 0 0;
+  border: 0;
   width: 19px;
   height: 100%;
-  padding: 18px 0 0 0;
   background: url("images/back_forward.png") no-repeat;
   overflow: hidden;
+}
+
+.btn-event-next {
+  background-position: -36px;
+}
+
+.related {
+  padding-top: 10px;
+}
+
+.related-list {
+  background: #fff;
+  margin-top: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  height: 27px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.related-list:hover,
+.related-list:focus {
+  height: 147px;
+  padding: 10px 0;
+}
+
+.related-list a {
+  display: block;
+  line-height: 25px;
+  padding-left: 25px;
+}
+
+
+/* 인기 사이트 */
+
+.popular {
+  margin-top: 20px;
+  padding: 10px;
+  position: relative;
+}
+
+.popular-list {
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.popular-list li {
+  counter-increment: number;
+  margin: 5px 0;
+  position: relative;
+}
+
+
+/* float때문에 일어나지 않은 마진병합으로 원하던것보다 마진이 더 생겨서 마진 재정의 */
+
+.popular-list li:first-child {
+  margin-top: 0;
+}
+
+.popular-list li:last-child {
+  margin-bottom: 0;
+}
+
+.popular-list li::before {
+  content: counter(number, decimal);
+  background: #999;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.popular-list em {
+  width: 9px;
+  height: 11px;
+  padding-top: 11px;
+  overflow: hidden;
+  background: url("images/rank.png") no-repeat;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.down {
+  background-position-y: 100% !important;
+}
+
+.stop {
+  background-position-y: 50% !important;
+}
+
+.popular-more {
+  position: absolute;
+  top: 3px;
+  right: 0;
+  padding: 10px;
 }
 
 
 /* 슬로건 */
 
 .slogan {
-  background-color: lime;
+  position: relative;
+}
+
+.slogan-heading {
+  width: 110px;
+  height: 83px;
+  background: url("images/coffee.png") no-repeat;
+  padding-top: 83px;
+  overflow: hidden;
+  position: absolute;
+  left: 35px;
+  bottom: -35px;
+}
+
+.slogan-cont {
+  margin: 15px 80px 15px 180px;
+  color: #a09784;
+}
+
+.slogan-cont q {
+  font-weight: bold;
+}
+
+.slogan-cont q::before {
+  font-size: 3.0rem;
+  position: relative;
+  top: 10px;
+}
+
+.slogan-cont q::after {
+  content: "";
 }
 
 
 /* 풋터 */
 
+.footer-bg {
+  background: linear-gradient(to bottom, #ccc, #eee);
+}
+
 .footer {
-  background-color: skyblue;
+  position: relative;
+  padding: 15px 20px;
+  /* background-color: skyblue; */
+}
+
+.footer-logo {
+  position: absolute;
+  top: 35px;
+  left: 35px;
+}
+
+.guide,
+.address,
+.copyright {
+  margin: 10px 100px 10px 160px;
+}
+
+.guide {
+  display: flex;
+  justify-content: space-around;
+  background: #7b8385;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.guide a {
+  display: block;
+  padding: 8px 15px;
+}
+
+.address span {
+  margin-right: 5px;
+}
+
+.tech-logo {
+  position: absolute;
+  top: 15px;
+  right: 0px;
 }
