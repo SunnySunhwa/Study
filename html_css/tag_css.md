@@ -90,6 +90,12 @@
 ## background
 - 속성] color, image, repeat, position, size, attachment
 - position: ## %주면 요소박스의 %와 배경이미지의 %둘다에 적용
+-   background: orange url("images/logo.png") no-repeat 0 0/contain;
+- 포지션 뒤에 /하고 100% 100% 또는 키워드로 cover, contain 올수있음
+- cover:   세로 기준으로 꽉 차게
+- contain:  가로 기준으로 꽉 차게 (세로는 Auto값)
+- 보통 반응형에 많이쓰이나, 배경은 처리하기가 어려워 가상의 이미지(src, alt)값을 주지 않고, ir기법으로 처리하듯 처리함
+
 
 ### gradient
 - background-image: linear-gradient(to bottom, red 0%, blue 30%, green 100%);

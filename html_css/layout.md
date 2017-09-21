@@ -11,7 +11,7 @@
 ### A, flex-direction
 - row / cloumn이냐에 따라 가로 or 세로가 메인축이 됨
 - 메인축의 반대가 교차축이 됨
-
+- 속기법] flex-flow: dircetion / wrap;
 
 ### A, justify-content
 - '메인축'을 기준으로 움직임

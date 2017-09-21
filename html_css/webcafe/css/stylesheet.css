@@ -6,8 +6,8 @@
 /* 숨김 컨텐츠 */
 
 .readable-hidden,
-legend {
-  background-color: red;
+legend,
+.a11y {
   /* display: none; 했을때에는 키가 포커싱 못함 -> 기껏 써놓은 의미를 잃음
   다른 방법으로 숨기기 (트릭) */
   /* 현재 상위요소 중  relative는 header */
@@ -19,6 +19,24 @@ legend {
   width: 1px;
   height: 1px;
   margin: -1px 0 0 -1px; */
+}
+
+
+/* 건너뛰기 링크 */
+
+.skip-nav {
+  background: yellow;
+  position: relative;
+  z-index: 10;
+}
+
+.a11y:focus {
+  left: 50%;
+  background: #000;
+  color: #fff;
+  padding: 5px 20px;
+  top: 4px;
+  transform: translateX(-50%);
 }
 
 
