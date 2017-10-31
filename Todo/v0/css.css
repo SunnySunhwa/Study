@@ -1,0 +1,10 @@
+@charset "utf-8";
+input {
+  font-size: 2em;
+  border: 1px solid #blue;
+  width: 15em;
+}
+
+#todo-list li:hover {
+  text-decoration: line-through;
+}
