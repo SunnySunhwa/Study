@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-(function() {
+(function () {
   let todos;
   const inputTodo = document.getElementById('input-todo');
   const todoList = document.getElementById('todo-list');
 
-  const render = function() {
+  const render = function () {
     let html = '';
 
     todos.forEach(({ id, content, completed }) => {
@@ -17,7 +17,7 @@ import axios from 'axios';
             <span class="glyphicon glyphicon-remove-circle pull-right" data-id="${id}"></span>
           </a>
           <label class="i-checks" for="${id}">
-            <input type="checkbox" id="${id}  "${checked}><i></i>
+            <input type="checkbox" id="${id}" ${checked}><i></i>
             <span>${content}</span>
           </label>
         </div>
@@ -27,7 +27,12 @@ import axios from 'axios';
     todoList.innerHTML = html;
   };
 
-  const getTodos = function() {
+  const maxId = function () {
+    return todos.length === 0 ?
+      1 : Math.max.apply(null, todos.map(todo => todo.id)) + 1;
+  };
+
+  const getTodos = function () {
     axios.get('/todos')
       .then(res => {
         todos = res.data;
@@ -38,15 +43,15 @@ import axios from 'axios';
       .catch(err => console.log(err.response));
   };
 
-  const addTodo = function() {
+  const addTodo = function () {
     const content = inputTodo.value;
     inputTodo.value = '';
 
     let todo;
 
     if (!todos || !todos.length) {
-      todos = { id: 1, content, completed: false };
-    } else { todos = { id: lastId(), content, completed: false }; }
+      todo = { id: 1, content, completed: false };
+    } else { todo = { id: maxId(), content, completed: false }; }
 
     axios.post('/todos', todo)
       .then(res => {
@@ -54,51 +59,41 @@ import axios from 'axios';
         getTodos();
       })
       .catch(err => console.log(err.response));
-  }
-
-  const lastId = function(id) {
-    return todos.length === 0 ?
-      1 : Math.max.apply(null, todos.map(todo => todo.id)) + 1;
   };
 
-  /* const lastId = function(id) {
-    return todos ? Math.max.apply(null, todos.map(function(todo) { return todo.id })) + 1 : 1;
-  }; */
-
+  const removeTodo = function (id) {
+    axios.delete(`/todos/${id}`)
+      .then(res => {
+        console.log('[DELETE]\n', res.data);
+        getTodos();
+      })
+      .catch(err => console.log(err.response));
+  };
 
 
   const toggle = function (id) {
-    todos.forEach(todo => {
-      todo.completed = todo.id === id ? !todo.completed : todo.completed;
-    });
+    const { completed } = todos.find(todo => todo.id == id);
+    axios.patch(`/todos/${id}`, { completed: !completed })
+      .then(() => {
+        console.log('[TOGGLE]\n',id);
+        getTodos();
+      })
+      .catch(err => console.log(err.response));
   };
 
-  const remove = function(id) {
-    todos = todos.filter(function(todo) {
+  window.addEventListener('load', () => getTodos());
 
-      return todo.id !== +id
-    });
-    render();
-    console.log('[remove]\n', todos);
-  };
-
-
-
-  window.addEventListener('load', function() {
-    getTodos();
-  });
-  inputTodo.addEventListener('keyup', function(e) {
+  inputTodo.addEventListener('keyup', e => {
     if (e.keyCode !== 13) return;
     addTodo();
   });
 
-  todoList.addEventListener('change', function(e) {
-    toggle(e.target.id);
+  todoList.addEventListener('change', e => {
+    toggle(e.target.id); 
   });
 
-  todoList.addEventListener('click', function(e) {
-    if (!e.target || e.target.nodeName !== 'SPAN' || e.target.parentNode.nodeName == 'LABEL') {
-      return;
-    } else { remove(e.target.dataset.id); }
+  todoList.addEventListener('click', e => {
+    if (!e.target || e.target.nodeName !== 'SPAN' || e.target.parentNode.nodeName == 'LABEL') return;
+    removeTodo(e.target.dataset.id);
   });
-})(); //IIFE
+}());

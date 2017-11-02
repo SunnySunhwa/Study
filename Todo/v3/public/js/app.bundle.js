@@ -9897,8 +9897,6 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 (function () {
   var todos = void 0;
   var inputTodo = document.getElementById('input-todo');
@@ -9914,10 +9912,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       var checked = completed ? 'checked' : '';
 
-      html += '<li class="list-group-item"> \n        <div class="hover-anchor"> \n          <a class="hover-action text-muted">\n            <span class="glyphicon glyphicon-remove-circle pull-right" data-id="' + id + '"></span>\n          </a>\n          <label class="i-checks" for="' + id + '">\n            <input type="checkbox" id="' + id + '  "' + checked + '><i></i>\n            <span>' + content + '</span>\n          </label>\n        </div>\n      </li>';
+      html += '<li class="list-group-item"> \n        <div class="hover-anchor"> \n          <a class="hover-action text-muted">\n            <span class="glyphicon glyphicon-remove-circle pull-right" data-id="' + id + '"></span>\n          </a>\n          <label class="i-checks" for="' + id + '">\n            <input type="checkbox" id="' + id + '" ' + checked + '><i></i>\n            <span>' + content + '</span>\n          </label>\n        </div>\n      </li>';
     });
 
     todoList.innerHTML = html;
+  };
+
+  var maxId = function maxId() {
+    return todos.length === 0 ? 1 : Math.max.apply(null, todos.map(function (todo) {
+      return todo.id;
+    })) + 1;
   };
 
   var getTodos = function getTodos() {
@@ -9938,9 +9942,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var todo = void 0;
 
     if (!todos || !todos.length) {
-      todos = { id: 1, content: content, completed: false };
+      todo = { id: 1, content: content, completed: false };
     } else {
-      todos = { id: lastId(), content: content, completed: false };
+      todo = { id: maxId(), content: content, completed: false };
     }
 
     _axios2.default.post('/todos', todo).then(function (res) {
@@ -9951,43 +9955,33 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     });
   };
 
-  var lastId = function lastId(id) {
-    return todos ? Math.max.apply(Math, _toConsumableArray(todos.map(function (todo) {
-      return todo.id;
-    }))) + 1 : 1;
+  var removeTodo = function removeTodo(id) {
+    _axios2.default.delete('/todos/' + id).then(function (res) {
+      console.log('[DELETE]\n', res.data);
+      getTodos();
+    }).catch(function (err) {
+      return console.log(err.response);
+    });
   };
-
-  /* const lastId = function(id) {
-    return todos ? Math.max.apply(null, todos.map(function(todo) { return todo.id })) + 1 : 1;
-  }; */
 
   var toggle = function toggle(id) {
-    todos = todos.map(function (todo) {
-      return todo.id == id ? Object.assign({}, todo, { completed: !todo.completed }) : todo;
-    });
-    render();
-    console.log('[toggle]\n', todos);
-  };
-  /*   const toggle = function(id) {
-      todos = todos.map(function(todo) {
-        return todo.id == id ? Object.assign({}, todo, { completed: !todo.completed }) : todo;
-      });
-      render();
-      console.log('[toggle]\n', todos);
-    };
-   */
-  var remove = function remove(id) {
-    todos = todos.filter(function (todo) {
+    var _todos$find = todos.find(function (todo) {
+      return todo.id == id;
+    }),
+        completed = _todos$find.completed;
 
-      return todo.id !== +id;
+    _axios2.default.patch('/todos/' + id, { completed: !completed }).then(function () {
+      console.log('[TOGGLE]\n', id);
+      getTodos();
+    }).catch(function (err) {
+      return console.log(err.response);
     });
-    render();
-    console.log('[remove]\n', todos);
   };
 
   window.addEventListener('load', function () {
-    getTodos();
+    return getTodos();
   });
+
   inputTodo.addEventListener('keyup', function (e) {
     if (e.keyCode !== 13) return;
     addTodo();
@@ -9998,13 +9992,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   });
 
   todoList.addEventListener('click', function (e) {
-    if (!e.target || e.target.nodeName !== 'SPAN' || e.target.parentNode.nodeName == 'LABEL') {
-      return;
-    } else {
-      remove(e.target.dataset.id);
-    }
+    if (!e.target || e.target.nodeName !== 'SPAN' || e.target.parentNode.nodeName == 'LABEL') return;
+    removeTodo(e.target.dataset.id);
   });
-})(); //IIFE
+})();
 
 /***/ }),
 /* 336 */

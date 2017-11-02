@@ -32,22 +32,23 @@
 
   const render = function () {
     let html = '';
-    let checked;
-    todos.forEach(todo => {
-      checked = todo.completed ? 'checked' : '';
-      html += `<li class="list-group-item">
-  <div class="hover-anchor">
-    <a class="hover-action text-muted">
-      <span class="glyphicon glyphicon-remove-circle pull-right" data-id="${todo.id}"></span>
-    </a>
-    <label class="i-checks" for="${todo.id}">
-      <input type="checkbox" id="${todo.id}" ${checked}>
-      <i></i>
-      <span>${todo.content}</span>
-    </label>
-  </div>
-</li>`;
+
+    todos.forEach(({ id, content, completed }) => {
+      const checked = completed ? 'checked' : '';
+
+      html += `<li class="list-group-item"> 
+        <div class="hover-anchor"> 
+          <a class="hover-action text-muted">
+            <span class="glyphicon glyphicon-remove-circle pull-right" data-id="${id}"></span>
+          </a>
+          <label class="i-checks" for="${id}">
+            <input type="checkbox" id="${id}  "${checked}><i></i>
+            <span>${content}</span>
+          </label>
+        </div>
+      </li>`;
     });
+
     todoList.innerHTML = html;
   };
 
