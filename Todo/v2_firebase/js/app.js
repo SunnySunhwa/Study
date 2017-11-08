@@ -1,11 +1,16 @@
-(function() {
-    let todos;
-    let status = 'all';
+(function(ax) {
+  var $x = ax.create({
+    baseURL: 'https://todolist-sunny.firebaseio.com/todos'
+  });
 
-    const inputTodo = document.getElementById('input-todo');
-    const todoList = document.getElementById('todo-list');
-		const completedTodos = document.getElementById('completedTodos');
-		const leftTodos = document.getElementById('leftTodos');
+
+  let todos;
+  let status = 'all';
+
+  const inputTodo = document.getElementById('input-todo');
+  const todoList = document.getElementById('todo-list');
+	const completedTodos = document.getElementById('completedTodos');
+	const leftTodos = document.getElementById('leftTodos');
 
 
 
@@ -56,13 +61,14 @@
     };
 
     const getTodos = function() {
-				todos = [
-					{ id: 3, content: 'HTML', completed: false }, 
-					{ id: 2, content: 'CSS', completed: true },
-					{ id: 1, content: 'JavaScript', completed: false }];
-
-        render();
-        console.log('[GET]\n', todos);
+      //베이스 url뒤에 붙는것만 써주면 됨
+        $x.get('.json')
+          .then((res) => {
+            todos = res.data;
+            render();
+            console.log('[GET]\n', todos);}) 
+        .catch((err) => {console.log(err)});
+        
     };
 
 
@@ -74,15 +80,23 @@
     const addTodo = function() {
         const content = inputTodo.value;
         inputTodo.value = '';
+        const temp = { id: lastTodoId(), content, completed: false };
+        //baseURL 뒤에 새로운 데이터는 /인덱스값이 오는데, 인덱스값 !== id 임.
+        $x.put(`/${(todos.length)}.json`, temp)
+          .then((res) => { 
+            todos.push(temp);
+            render(); 
+            console.log('[ADD]\n', todos);
+          })
+        .catch((err) => {console.log(err)});
 
-        if (!todos || todos.length === 0) {
+      /*  todos 전체를 다시 만드는 방법 (서버와 맞지 않음) 
+       if (!todos || todos.length === 0) {
             todos = [{ id: 1, content, completed: false }];
         } else {
             todos = [{id: lastTodoId(), content, completed: false}].concat(todos);
         }
-
-        render();
-        console.log('[ADD]\n', todos);
+ */      
     };
 
     const toggleTodoComplete = function(id) {
@@ -168,4 +182,4 @@
 		});
 
 		document.getElementById('btn-removeCompletedTodos').addEventListener('click', removeCompletedTodo);
-		}());
+		}(axios));
