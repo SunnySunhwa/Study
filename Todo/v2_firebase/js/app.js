@@ -9,32 +9,33 @@
 
   const inputTodo = document.getElementById('input-todo');
   const todoList = document.getElementById('todo-list');
-	const completedTodos = document.getElementById('completedTodos');
-	const leftTodos = document.getElementById('leftTodos');
+  const completedTodos = document.getElementById('completedTodos');
+  const leftTodos = document.getElementById('leftTodos');
 
 
 
-		const filterByStatus = function (){
-			//사용하는 값은 todo의 completed밖에 없기 때문에 distructuring
-			 return todos.filter(( { completed } ) => {
-				 switch (status){
-					 case 'active' : return !completed
-					 case 'completed' : return completed;
-					 //all일 경우 모든 todos를 그대로 반환해야함-> filter를 거치기 위해 true로
-					 default : return true; 
-				 }
-			 });
-		};
-		
+  const filterByStatus = function (){
+  	//사용하는 값은 todo의 completed밖에 없기 때문에 distructuring
+  	 return todos.filter(( { completed } ) => {
+  		 switch (status){
+  			 case 'active' : return !completed
+  			 case 'completed' : return completed;
+  			 //all일 경우 모든 todos를 그대로 반환해야함-> filter를 거치기 위해 true로
+  			 default : return true; 
+  		 }
+  	 });
+  };
+  
 
-		const countCompletedTodos = function(){
-			return (todos.filter(( {completed} ) => completed)).length;
-		};
-		
-		
-		const countLeftTodos = function(){
-			return (todos.filter(( {completed} ) => !completed)).length;	
-		};
+
+	const countCompletedTodos = function(){
+		return (todos.filter(( {completed} ) => completed)).length;
+	};
+	
+	
+	const countLeftTodos = function(){
+		return (todos.filter(( {completed} ) => !completed)).length;	
+	};
 
     const render = function() {
         let html = '';
@@ -55,8 +56,8 @@
         </div>
       </li >`;
         });
-				completedTodos.innerHTML = countCompletedTodos();
-				leftTodos.innerHTML = countLeftTodos();
+        completedTodos.innerHTML = countCompletedTodos();
+        leftTodos.innerHTML = countLeftTodos();
         todoList.innerHTML = html;
     };
 
@@ -108,11 +109,11 @@
         render();
         console.log('[TOGGLE-COMP]\n', todos);
     };
-		const toggleTodoAllComplete = function (checked) {
-				todos = todos.map(({ id, content }) => ({ id, content, completed: checked }));
-				render();
-				console.log('[TOGGLE-A-COMP]\n', todos);
-			};
+	const toggleTodoAllComplete = function (checked) {
+			todos = todos.map(({ id, content }) => ({ id, content, completed: checked }));
+			render();
+			console.log('[TOGGLE-A-COMP]\n', todos);
+		};
 
 
     const removeTodo = function(id) {

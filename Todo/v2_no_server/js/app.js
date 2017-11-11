@@ -4,8 +4,8 @@
 
     const inputTodo = document.getElementById('input-todo');
     const todoList = document.getElementById('todo-list');
-		const completedTodos = document.getElementById('completedTodos');
-		const leftTodos = document.getElementById('leftTodos');
+	  const completedTodos = document.getElementById('completedTodos');
+	  const leftTodos = document.getElementById('leftTodos');
 
 
 
